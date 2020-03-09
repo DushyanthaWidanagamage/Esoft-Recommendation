@@ -1,29 +1,23 @@
 import pandas
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as pl
 import pandas
 from pandas.plotting import scatter_matrix
 
-names = ['student', 'Age', 'Course', 'stream', 'Results', 'Gender', 'sucess']
+names = ['Course-Catagory','stream-catagory','result-scale','future-succes']
 data = pandas.read_csv('Student.csv')
-description = data.describe()
-print(description)
+
+data.info()
 
 data.shape
 
-data.head()
+grouped = data.groupby(['result-scale','future-succes'])
+size = grouped.size()
+size.plot(kind='bar',figsize=(10,10))
 
-data.dtypes
+grouped1 = data.groupby(['Course-Catagory','future-succes'])
+size1 = grouped1.size()
+size.plot(kind='bar',figsize=(10,10))
 
-data.corr()
-
-
-# plot data
-
-scatter_matrix(data)
-plt.show()
-
-
-hist = data.hist(bins=3)
-
-ax = data.plot.box()
-
+grouped2 = data.groupby(['stream-catagory','future-succes'])
+size2 = grouped.size()
+size2.plot(kind='bar',figsize=(10,10))
